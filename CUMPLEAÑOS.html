@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feliz Cumpleaños Tía</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(to right, #FFDEE9, #B5FFFC);
+            color: #444;
+            overflow: hidden;
+        }
+
+        .container {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            perspective: 1000px;
+        }
+
+        .book {
+            width: 80%;
+            max-width: 800px;
+            height: 700px;
+            position: relative;
+            transform-style: preserve-3d;
+            transform: rotateY(0deg);
+            transition: transform 1s ease;
+        }
+
+        .page {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: #fff;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+            backface-visibility: hidden;
+            padding: 40px;
+            text-align: center;
+            font-size: 1.5em;
+            color: #333;
+            line-height: 1.6;
+            overflow: hidden;
+        }
+
+        .page.front {
+            background: white;
+        }
+
+        .page.back {
+            transform: rotateY(180deg);
+            background: white;
+        }
+
+        .book.flipped {
+            transform: rotateY(180deg);
+        }
+
+        .title {
+            font-size: 3em;
+            color: #FF69B4;
+            font-style: italic;
+            animation: bounce 1s ease infinite alternate;
+        }
+
+        .photos-container {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            margin-top: 50px;
+        }
+
+        .photo-frame {
+            width: 200px;
+            height: 300px;
+            border: 10px solid #FF69B4;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .photo-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .buttons {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .button {
+            padding: 10px 20px;
+            background-color: #FF69B4;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            margin: 0 10px;
+            cursor: pointer;
+            font-size: 1em;
+            transition: background-color 0.3s;
+        }
+
+        .button:hover {
+            background-color: #FF1493;
+        }
+
+        @keyframes bounce {
+            0% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+            100% {
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="book" id="book">
+            <!-- Primera página: Título "FELIZ CUMPLEAÑOS" y fotos -->
+            <div class="page front">
+                <div class="title">¡FELIZ CUMPLEAÑOS!</div>
+                <div class="photos-container">
+                    <div class="photo-frame">
+                        <img src="FOTO1.jpeg" alt="Foto 1">
+                    </div>
+                    <div class="photo-frame">
+                        <img src="FOTO2.jpeg" alt="Foto 2">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Segunda página: Texto del mensaje -->
+            <div class="page back">
+                Querida Tía,<br><br>
+                Gracias por cada día a tu lado, por los momentos llenos de alegría y por la felicidad que me has brindado. Has sido el refugio de mi niñez, la paciencia que me sostuvo y el amor que siempre me cuidó.<br><br>
+                Gracias por darme una infancia inolvidable, llena de risas, juegos y recuerdos que atesoro con el corazón. A pesar de los cambios que he vivido, tu amor ha sido constante, y te lo agradezco profundamente.<br><br>
+                Te quiero con todo mi ser, Tía. En este día especial, deseo que la vida te regale muchos años más, llenos de felicidad, armonía y todo lo hermoso que mereces.<br><br>
+                <span class="highlight">FELIZ CUMPLEAÑOS</span>, que sigas iluminando la vida de todos los que te rodean, como lo has hecho siempre.<br><br>
+                Con cariño,<br>
+                Brian Velasquéz
+            </div>
+        </div>
+
+        <!-- Botones de navegación -->
+        <div class="buttons">
+            <button class="button" id="prevButton">Izquierda</button>
+            <button class="button" id="nextButton">Derecha</button>
+        </div>
+    </div>
+
+    <script>
+        const book = document.getElementById('book');
+        const prevButton = document.getElementById('prevButton');
+        const nextButton = document.getElementById('nextButton');
+        let flipped = false;
+
+        nextButton.addEventListener('click', () => {
+            if (!flipped) {
+                book.classList.add('flipped');
+                flipped = true;
+            }
+        });
+
+        prevButton.addEventListener('click', () => {
+            if (flipped) {
+                book.classList.remove('flipped');
+                flipped = false;
+            }
+        });
+    </script>
+
+</body>
+</html>
